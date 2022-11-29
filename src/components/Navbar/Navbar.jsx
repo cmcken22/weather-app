@@ -1,6 +1,11 @@
 import React from 'react';
 import cx from 'classnames';
 
+const parseName = (location = "") => {
+  const [city] = location.split(',');
+  return city;
+}
+
 const NavBar = ({ locations, activeLocation, updateLocation }) => {
 
   const handleSelectLocation = (location) => {
@@ -12,12 +17,13 @@ const NavBar = ({ locations, activeLocation, updateLocation }) => {
       {locations?.map(location => {
         return (
           <div
+            key={location?.id}
             className={cx('navbar__location', {
               'navbar__location--active': location?.name === activeLocation?.name
             })}
             onClick={() => handleSelectLocation(location)}
           >
-            {location?.name}
+            {parseName(location?.name)}
           </div>
         );
       })}

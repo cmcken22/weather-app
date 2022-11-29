@@ -8,7 +8,7 @@ const WeatherIcon = ({ type, small }) => {
         "weather-icon--small": small
       })}
       style={{
-        backgroundImage: `url(../icons/${type}.svg)`
+        backgroundImage: !!type ? `url(../icons/${type}.svg)` : null
       }}
     >
     </div>

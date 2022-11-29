@@ -1,14 +1,11 @@
 const path = require('path');
-const Dotenv = require('dotenv-webpack');
-require('dotenv').config();
-
 const APP_DIR = path.resolve(__dirname, './src');
 
 module.exports = {
-  // entry: path.resolve(__dirname, './src/index.js'),
-  entry: [
-    "@babel/polyfill", APP_DIR + '/index.js'
-  ],
+  entry: path.resolve(__dirname, './src/index.js'),
+  // entry: [
+  //   "@babel/polyfill", APP_DIR + '/index.js'
+  // ],
   module: {
     rules: [
       {
@@ -16,6 +13,10 @@ module.exports = {
         exclude: /node_modules/,
         use: ['babel-loader'],
       },
+      {
+        test: /\.(png|woff|woff2|eot|ttf|otf|svg)$/,
+        loader: 'url-loader'
+      }, 
       {
         test: /\.less$/i,
         use: [
@@ -34,9 +35,6 @@ module.exports = {
     path: path.resolve(__dirname, './public'),
     filename: 'bundle.js',
   },
-  plugins: [
-    new Dotenv({ systemvars: true }),
-  ]
   // devServer: {
   //   contentBase: path.resolve(__dirname, './public'),
   // },
