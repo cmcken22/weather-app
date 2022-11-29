@@ -1,4 +1,3 @@
-import { getForecast } from "../../MockData/mockAPI";
 import axios from 'axios';
 
 class WeatherAPI {
@@ -15,7 +14,7 @@ class WeatherAPI {
         forecastDays: 5
       },
       headers: {
-        'X-RapidAPI-Key': '7cb8836e36mshe42a91f2a819bbfp1a6f7djsn9d90b837331f',
+        'X-RapidAPI-Key': '8ff0896b4dmsh87d9af28e917532p1227b4jsn79e1761ea677', //<-- ideally this would be an environment variable, but env vars with docker/heroku is a pain
         'X-RapidAPI-Host': 'visual-crossing-weather.p.rapidapi.com'
       }
     };
