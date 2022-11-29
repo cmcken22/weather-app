@@ -1,4 +1,6 @@
 const path = require('path');
+const Dotenv = require('dotenv-webpack');
+require('dotenv').config();
 
 const APP_DIR = path.resolve(__dirname, './src');
 
@@ -40,6 +42,9 @@ module.exports = {
     path: path.resolve(__dirname, './public'),
     filename: 'bundle.js',
   },
+  plugins: [
+    new Dotenv({ systemvars: true }),
+  ]
   // devServer: {
   //   contentBase: path.resolve(__dirname, './public'),
   // },
