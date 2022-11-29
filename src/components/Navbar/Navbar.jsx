@@ -17,7 +17,7 @@ const NavBar = ({ locations, activeLocation, updateLocation }) => {
       {locations?.map(location => {
         return (
           <div
-            key={location?.id}
+            key={location?.data?.id}
             className={cx('navbar__location', {
               'navbar__location--active': location?.name === activeLocation?.name
             })}

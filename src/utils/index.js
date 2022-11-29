@@ -50,7 +50,7 @@ export const serializeData = (locations, data) => {
     const obj = data[i];
     res.push({
       name: location,
-      data: obj
+      data: obj?.locations?.[location]
     });
   }
   return res;

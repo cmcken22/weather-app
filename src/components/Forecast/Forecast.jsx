@@ -1,20 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { getConditions, getDayOfWeek } from '../../utils';
+import EmptyState from '../EmptyState';
 import WeatherIcon from '../WeatherIcon/WeatherIcon';
-
-const MissingData = () => {
-  return (
-    <div className="forecast forecast--no-data">
-      <div className='forecast__missing-data-icon' />
-      <p>No Data Found!</p>
-      <p>Please try again.</p>
-    </div>
-  );
-}
 
 const Forecast = ({ location }) => {
   const [today] = useState(getDayOfWeek());
-  if (!location) return <MissingData />;
+  if (!location) {
+    return (
+      <EmptyState
+        title="No Data Found!"
+        subTitle="Please try again."
+      />
+    );
+  }
 
   return (
     <div className="forecast">
