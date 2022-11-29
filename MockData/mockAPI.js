@@ -16,15 +16,12 @@ const locations = {
 }
 
 export const getForecast = (location) => {
-  console.clear();
-  console.log('location:', location);
   return new Promise(async (resolve) => {
-    await wait(0);
+    await wait(1000);
     if (location === LOCATIONS.TOKYO) return resolve(null);
     const res = locations[location];
     if (res?.locations?.[location]) {
       const data = res?.locations?.[location];
-      console.log('DATA:', data);
       return resolve(data);
     }
     return resolve(null);

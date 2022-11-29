@@ -8,6 +8,7 @@ import { LOCATIONS } from '../constants';
 import { serializeData } from '../utils';
 
 const App = () => {
+  const [loading, setLoading] = useState(true);
   const [locations, setLocations] = useState([]);
   const [activeLocation, setActiveLocation] = useState(null);
 
@@ -54,8 +55,10 @@ const App = () => {
       const data = serializeData(locations, res);
       console.log('data:', data);
       setLocations(data);
+      setLoading(false);
     }).catch(err => {
       console.log('err:', err);
+      setLoading(false);
     });
   }, []);
 
@@ -72,13 +75,20 @@ const App = () => {
 
   return (
     <div className='app'>
-      <NavBar
-        locations={locations}
-        activeLocation={activeLocation}
-        updateLocation={handleUpdateLocation}
-      />
+      {loading ? (
+        <p>loading...</p>
+      ): (
+          <>
+        <NavBar
+          locations = { locations }
+          activeLocation = { activeLocation }
+          updateLocation = { handleUpdateLocation }
+        />
       <Forecast location={activeLocation?.data} />
-    </div>
+    </>
+  )
+}
+    </div >
   );
 }
 
