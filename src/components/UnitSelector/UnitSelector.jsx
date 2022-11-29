@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 
 const UnitSelector = ({ onUpdateUnit, unit }) => {
   const [fahrenheit, setFahrenheit] = useState(unit === 'F');
 
-  const handleUpdateUnit = () => {
-    setFahrenheit(prev => {
-      const next = !prev;
-      if (onUpdateUnit) onUpdateUnit(next ? 'F' : 'C');
-      return next;
-    });
-  }
+  const handleUpdateUnit = useCallback(() => {
+    const next = !fahrenheit;
+    setFahrenheit(next);
+    if (onUpdateUnit) onUpdateUnit(next ? 'F' : 'C');
+  }, [fahrenheit])
 
   return (
     <div className='unit-selector'>

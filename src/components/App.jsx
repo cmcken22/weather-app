@@ -61,7 +61,6 @@ class App extends Component {
 
   render() {
     const { loading, locations, activeLocation, unit } = this.state;
-    console.log('unit:', unit);
 
     if (!loading && !locations?.length) {
       return (
