@@ -1,0 +1,7 @@
+setup:
+  config:
+    API_URL: "werfwr"
+    PASSWORD: VALUE_TO_BE_OVERRIDDEN_1
+build:
+  docker:
+    web: Dockerfile.web
