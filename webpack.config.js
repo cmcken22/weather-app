@@ -16,14 +16,6 @@ module.exports = {
         exclude: /node_modules/,
         use: ['babel-loader'],
       },
-      // {
-      //   test: /(\.css|.scss)$/,
-      //   use: [{
-      //     loader: "style-loader" // creates style nodes from JS strings
-      //   }, {
-      //     loader: "css-loader" // translates CSS into CommonJS
-      //   }]
-      // }
       {
         test: /\.less$/i,
         use: [
