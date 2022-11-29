@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { getConditions, getDayOfWeek } from '../../utils';
-import WeatherIcon from '../WeatherIcon/WeatherIcon';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const EmptyState = ({ title, subTitle }) => {
   return (
@@ -14,6 +13,16 @@ const EmptyState = ({ title, subTitle }) => {
       )}
     </div>
   );
+}
+
+EmptyState.defaultProps = {
+  title: 'No data found!',
+  subTitle: 'Please try later.'
+}
+
+EmptyState.propTypes = {
+  title: PropTypes.string,
+  subTitle: PropTypes.string
 }
 
 export default EmptyState;

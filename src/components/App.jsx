@@ -72,9 +72,8 @@ const App = () => {
           />
           <Forecast location={activeLocation?.data} />
         </>
-      )
-}
-    </div >
+      )}
+    </div>
   );
 }
 

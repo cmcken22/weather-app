@@ -1,5 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
+import PropTypes from 'prop-types';
 
 const parseName = (location = "") => {
   const [city] = location.split(',');
@@ -31,4 +32,10 @@ const NavBar = ({ locations, activeLocation, updateLocation }) => {
   );
 }
 
-export default NavBar
+NavBar.propTypes = {
+  locations: PropTypes.object,
+  activeLocation: PropTypes.string,
+  updateLocation: PropTypes.func
+}
+
+export default NavBar;

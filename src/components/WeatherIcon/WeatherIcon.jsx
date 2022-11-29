@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import cx from 'classnames';
+import PropTypes from 'prop-types';
 
 const WeatherIcon = ({ type, small }) => {
   return (
@@ -13,6 +14,15 @@ const WeatherIcon = ({ type, small }) => {
     >
     </div>
   );
+}
+
+WeatherIcon.defaultProps = {
+  small: false
+}
+
+WeatherIcon.propTypes = {
+  type: PropTypes.string,
+  small: PropTypes.bool
 }
 
 export default WeatherIcon;

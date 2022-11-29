@@ -1,18 +1,12 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { getConditions, getDayOfWeek } from '../../utils';
 import EmptyState from '../EmptyState';
 import WeatherIcon from '../WeatherIcon/WeatherIcon';
 
 const Forecast = ({ location }) => {
   const [today] = useState(getDayOfWeek());
-  if (!location) {
-    return (
-      <EmptyState
-        title="No Data Found!"
-        subTitle="Please try again."
-      />
-    );
-  }
+  if (!location) return <EmptyState />;
 
   return (
     <div className="forecast">
@@ -44,6 +38,10 @@ const Forecast = ({ location }) => {
       </div>
     </div>
   );
+}
+
+Forecast.propTypes = {
+  location: PropTypes.object,
 }
 
 export default Forecast;
