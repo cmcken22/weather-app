@@ -42,3 +42,16 @@ export const getDayOfWeek = (dateStr) => {
 export const getConditions = (condition) => {
   return conditions[condition] ? conditions[condition] : condition;
 }
+
+export const serializeData = (locations, data) => {
+  let res = [];
+  for (let i = 0; i < data.length; i++) {
+    const location = locations[i];
+    const obj = data[i];
+    res.push({
+      name: location,
+      data: obj
+    });
+  }
+  return res;
+}

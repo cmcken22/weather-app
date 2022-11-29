@@ -1,9 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
-import { washington, toronto } from '../../MockData';
+// import { washington, toronto } from '../../MockData';
 import NavBar from './Navbar';
 import Forecast from './Forecast';
 import { getForecast } from '../../MockData/mockAPI';
+import { LOCATIONS } from '../constants';
+import { serializeData } from '../utils';
 
 const App = () => {
   const [locations, setLocations] = useState([]);
@@ -16,8 +18,9 @@ const App = () => {
     //   params: {
     //     aggregateHours: '24',
     //     // location: 'Washington,DC,USA',
-    //     // location: 'Toronto,ON,CANADA',
-    //     location: 'Tulum,QR,MEXICO',
+    //     location: 'Toronto,ON,CANADA',
+    //     // location: 'Tulum,QR,MEXICO',
+    //     // location: 'Tokyo,JAPAN',
     //     contentType: 'json',
     //     unitGroup: 'us',
     //     shortColumnNames: '0',
@@ -40,11 +43,20 @@ const App = () => {
   }, []);
 
   const getLocations = useCallback(async () => {
-    const toronto = await getForecast('Toronto,ON,CANADA');
-    const washington = await getForecast('Washington,DC,USA');
-    const tulum = await getForecast('Tulum,QR,MEXICO');
-    const res = [toronto, tulum, washington];
-    setLocations(res);
+    const locations = [LOCATIONS.TORONTO, LOCATIONS.TOKYO, LOCATIONS.TULUM];
+    let promises = [];
+    for (let i = 0; i < locations.length; i++) {
+      promises.push(getForecast(locations[i]));
+    }
+
+    Promise.all(promises).then(res => {
+      console.log('res:', res);
+      const data = serializeData(locations, res);
+      console.log('data:', data);
+      setLocations(data);
+    }).catch(err => {
+      console.log('err:', err);
+    });
   }, []);
 
   useEffect(() => {
@@ -65,7 +77,7 @@ const App = () => {
         activeLocation={activeLocation}
         updateLocation={handleUpdateLocation}
       />
-      <Forecast location={activeLocation} />
+      <Forecast location={activeLocation?.data} />
     </div>
   );
 }
