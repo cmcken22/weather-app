@@ -13,7 +13,7 @@ const Forecast = ({ location }) => {
   return (
     <div className="forecast">
       <div className="forecast__main">
-        <p className="forecast__title">Today</p>
+        <p className="forecast__title forecast__title--large">Today</p>
         <div className='forecast__status'>
           <WeatherIcon type={location?.currentConditions?.icon} />
           <div className='forecast__description'>

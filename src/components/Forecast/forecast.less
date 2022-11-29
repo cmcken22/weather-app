@@ -16,12 +16,19 @@
     width: 100%;
     box-sizing: border-box;
     border-bottom: 4px solid white;
+    .forecast__title {
+      margin-bottom: 8px;
+    }
   }
 
   &__title {
     text-align: center;
     font-family: "Alexandria-Thin";
     font-size: 24px;
+
+    &--large {
+      font-size: 32px;
+    }
   }
 
   &__temp {
@@ -68,4 +75,35 @@
     flex-direction: column;
     justify-content: space-between;
   }
+}
+
+@media screen and (max-width: 700px) {
+  .forecast__weekly {
+    height: 160px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .forecast {
+    &__weekly {
+      height: fit-content;
+      display: grid;
+      grid-template-columns: auto auto;
+    }
+    &__day {
+      .weather-icon {
+        margin: 16px 0px;
+      }
+      &:nth-child(1) {
+        border-bottom: 4px solid white;
+      }
+      &:nth-child(2) {
+        border-bottom: 4px solid white;
+      }
+      &:nth-child(even) {
+        border-right: none;
+      }
+    }
+  }
+
 }
