@@ -1,8 +1,13 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const Container = styled.div`
+  background: blue;
+`;
 
 const NavBar = ({ locations }) => {
   return (
-    <div>
+    <Container>
       {locations?.map(location => {
         return (
           <div>
@@ -10,7 +15,7 @@ const NavBar = ({ locations }) => {
           </div>
         );
       })}
-    </div>
+    </Container>
   );
 }
 

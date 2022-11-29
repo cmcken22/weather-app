@@ -1,7 +1,12 @@
 const path = require('path');
 
+const APP_DIR = path.resolve(__dirname, './src');
+
 module.exports = {
-  entry: path.resolve(__dirname, './src/index.js'),
+  // entry: path.resolve(__dirname, './src/index.js'),
+  entry: [
+    "@babel/polyfill", APP_DIR + '/index.js'
+  ],
   module: {
     rules: [
       {
@@ -15,8 +20,6 @@ module.exports = {
           loader: "style-loader" // creates style nodes from JS strings
         }, {
           loader: "css-loader" // translates CSS into CommonJS
-        }, {
-          loader: "sass-loader" // compiles Sass to CSS
         }]
       }
     ],

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { washington, toronto } from '../MockData';
-import NavBar from './components/NavBar';
+import { washington, toronto } from '../../MockData';
+import NavBar from './NavBar';
 
 const App = () => {
   const [locations, setLocations] = useState([]);
