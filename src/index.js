@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/App';
 
-require('./styles/main.css');
+require('./styles/main.less');
 
 const container = document.getElementById('app');
 const root = ReactDOM.createRoot(container);

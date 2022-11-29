@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 import { washington, toronto } from '../../MockData';
 import NavBar from './NavBar';
+import Forecast from './Forecast';
 
 const App = () => {
   const [locations, setLocations] = useState([]);
+  const [activeLocation, setActiveLocation] = useState(null);
 
   useEffect(() => {
     // const options = {
@@ -34,10 +36,25 @@ const App = () => {
     setLocations(res);
   }, []);
 
+  useEffect(() => {
+    if (locations?.length && activeLocation === null) {
+      const [firstLocation] = locations;
+      setActiveLocation(firstLocation);
+    }
+  }, [locations, activeLocation]);
+
+  const handleUpdateLocation = useCallback((location) => {
+    setActiveLocation(location);
+  }, []);
+
   return (
     <div className='app'>
-      HELLO
-      <NavBar locations={locations} />
+      <NavBar
+        locations={locations}
+        activeLocation={activeLocation}
+        updateLocation={handleUpdateLocation}
+      />
+      <Forecast location={activeLocation} />
     </div>
   );
 }

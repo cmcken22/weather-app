@@ -1,18 +1,37 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useEffect, useState } from 'react';
+import styled, { css } from 'styled-components'
 
 const Container = styled.div`
-  background: blue;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
-const NavBar = ({ locations }) => {
+const Location = styled.div`
+  background: blue;
+
+  ${props => props.active && css`
+    background: palevioletred;
+    color: white;
+  `}
+`;
+
+const NavBar = ({ locations, activeLocation, updateLocation }) => {
+
+  const handleSelectLocation = (location) => {
+    if (updateLocation) updateLocation(location);
+  }
+
   return (
     <Container>
       {locations?.map(location => {
         return (
-          <div>
+          <Location
+            active={location?.name === activeLocation?.name}
+            onClick={() => handleSelectLocation(location)}
+          >
             {location?.name}
-          </div>
+          </Location>
         );
       })}
     </Container>
