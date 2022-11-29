@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { getConditions, getDayOfWeek } from '../../utils';
+import { getConditions, getDayOfWeek, convertTemp } from '../../utils';
 import EmptyState from '../EmptyState';
 import WeatherIcon from '../WeatherIcon/WeatherIcon';
 
-const Forecast = ({ location }) => {
+const Forecast = ({ location, unit }) => {
   const [today] = useState(getDayOfWeek());
   if (!location) return <EmptyState />;
 
@@ -15,7 +15,7 @@ const Forecast = ({ location }) => {
         <div className='forecast__status'>
           <WeatherIcon type={location?.currentConditions?.icon} />
           <div className='forecast__description'>
-            <p className='forecast__temp forecast__temp--large'>{location?.currentConditions?.temp}&#xb0;</p>
+            <p className='forecast__temp forecast__temp--large'>{convertTemp(location?.currentConditions?.temp, unit)}&#xb0;</p>
             <p className="forecast__title">{getConditions(location?.currentConditions?.icon)}</p>
           </div>
         </div>
@@ -31,7 +31,7 @@ const Forecast = ({ location }) => {
             >
               <p className='forecast__title'>{dayOfWeek}</p>
               <WeatherIcon small type={val?.icon} />
-              <p className='forecast__temp'>{val?.temp}&#xb0;</p>
+              <p className='forecast__temp'>{convertTemp(val?.temp, unit)}&#xb0;</p>
             </div>
           )
         })}
@@ -42,6 +42,7 @@ const Forecast = ({ location }) => {
 
 Forecast.propTypes = {
   location: PropTypes.object,
+  unit: PropTypes.string
 }
 
 export default Forecast;

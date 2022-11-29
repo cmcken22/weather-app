@@ -6,6 +6,7 @@ import { serializeData } from '../utils';
 import EmptyState from './EmptyState';
 import WeatherAPI from '../utils/WeatherAPI';
 import { FadeLoader } from 'react-spinners';
+import UnitSelector from './UnitSelector';
 
 class App extends Component {
   constructor(props) {
@@ -13,7 +14,8 @@ class App extends Component {
     this.state = {
       loading: true,
       locations: [],
-      activeLocation: null
+      activeLocation: null,
+      unit: 'F'
     };
   }
 
@@ -53,8 +55,13 @@ class App extends Component {
     this.setState({ activeLocation: location?.data });
   }
 
+  handleUnitUpdate = (unit) => {
+    this.setState({ unit });
+  }
+
   render() {
-    const { loading, locations, activeLocation } = this.state;
+    const { loading, locations, activeLocation, unit } = this.state;
+    console.log('unit:', unit);
 
     if (!loading && !locations?.length) {
       return (
@@ -82,7 +89,12 @@ class App extends Component {
               updateLocation={this.handleUpdateLocation}
             />
             <Forecast
+              unit={unit}
               location={activeLocation}
+            />
+            <UnitSelector
+              unit={unit}
+              onUpdateUnit={this.handleUnitUpdate}
             />
           </>
         )}

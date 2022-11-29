@@ -60,3 +60,10 @@ export const parseName = (location = "") => {
   const [city] = location.split(',');
   return city;
 }
+
+export const convertTemp = (temp, unit = 'F') => {
+  if (unit === 'F') return temp;
+  const res = (temp - 32) * (5 / 9);
+  if (res % 1 !== 0) return res.toFixed(2);
+  return res;
+}
