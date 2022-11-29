@@ -1,11 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
-
-const parseName = (location = "") => {
-  const [city] = location.split(',');
-  return city;
-}
+import { parseName } from '../../utils';
 
 const NavBar = ({ locations, activeLocation, updateLocation }) => {
 
@@ -33,8 +29,8 @@ const NavBar = ({ locations, activeLocation, updateLocation }) => {
 }
 
 NavBar.propTypes = {
-  locations: PropTypes.object,
-  activeLocation: PropTypes.string,
+  locations: PropTypes.array,
+  activeLocation: PropTypes.object,
   updateLocation: PropTypes.func
 }
 

@@ -55,3 +55,8 @@ export const serializeData = (locations, data) => {
   }
   return res;
 }
+
+export const parseName = (location = "") => {
+  const [city] = location.split(',');
+  return city;
+}
